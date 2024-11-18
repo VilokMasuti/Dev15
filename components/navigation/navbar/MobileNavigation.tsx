@@ -38,7 +38,7 @@ const MobileNavigation = () => {
             alt="Logo"
           />
 
-          <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900">
+          <p className="h2-bold font-space-grotesk  text-dark-100 dark:text-light-900">
             Dev<span className="text-primary-500">Flow</span>
           </p>
         </Link>

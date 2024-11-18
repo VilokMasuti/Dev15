@@ -1,15 +1,15 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
-import ROUTES from "@/constants/routes";
+import ROUTES from '@/constants/routes'
 
-import NavLinks from "./navbar/NavLinks";
-import { Button } from "../ui/button";
+import NavLinks from './navbar/NavLinks'
+import { Button } from '../ui/button'
 
 const LeftSideNavigation = () => {
   return (
-    <section className="custom-scrollbar background-light900_dark200 light-border sticky left-0 top-0 h-screen flex flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
+    <section className="custom-scrollbar background-light900_dark200 light-border shadow-light-300 sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 max-sm:hidden lg:w-[266px] dark:shadow-none">
       <div className="flex flex-1 flex-col gap-6">
         <NavLinks />
       </div>
@@ -41,14 +41,14 @@ const LeftSideNavigation = () => {
               alt="Account"
               width={20}
               height={20}
-              className="invert-colors lg:hidden"
+              className="invert-colors   lg:hidden"
             />
             <span className="max-lg:hidden">Sign Up</span>
           </Link>
         </Button>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default LeftSideNavigation;
+export default LeftSideNavigation
