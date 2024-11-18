@@ -1,10 +1,11 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import { MDXEditorMethods } from "@mdxeditor/editor";
+import dynamic from "next/dynamic";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 
-import { askQuestionSchema } from "@/lib/validation";
-
+import { AskQuestionSchema } from "../../lib/validation";
 import { Button } from "../ui/button";
 import {
   Form,
@@ -16,10 +17,13 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-
-const AskQuestion = () => {
+const Editor = dynamic(() => import("@/components/editor"), {
+  ssr: false,
+});
+const AskQuestionForm = () => {
+  const editorRef = useRef<MDXEditorMethods>(null);
   const form = useForm({
-    resolver: zodResolver(askQuestionSchema),
+    resolver: zodResolver(AskQuestionSchema),
     defaultValues: {
       title: "",
       content: "",
@@ -29,6 +33,7 @@ const AskQuestion = () => {
   const handleCreateQuestion = () => {
     // TODO: handle create question
   };
+
   return (
     <Form {...form}>
       <form
@@ -65,13 +70,18 @@ const AskQuestion = () => {
           control={form.control}
           name="content"
           render={({ field }) => (
-            <FormItem className="flex w-full flex-col ">
-              <FormLabel className="paragraph-medium text-dark400_light800">
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
                 Detailed explanation of your problem{" "}
                 <span className="text-primary-500">*</span>
               </FormLabel>
-
-              <FormControl>Editor</FormControl>
+              <FormControl>
+                <Editor
+                  value={field.value}
+                  editorRef={editorRef}
+                  fieldChange={field.onChange}
+                />
+              </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Introduce the problem and expand on what you&apos;ve put in the
                 title.
@@ -96,7 +106,6 @@ const AskQuestion = () => {
                     placeholder="Add tags..."
                     {...field}
                   />
-                  Tags
                 </div>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
@@ -120,4 +129,4 @@ const AskQuestion = () => {
   );
 };
 
-export default AskQuestion;
+export default AskQuestionForm;
