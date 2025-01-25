@@ -1,5 +1,4 @@
-import mongoose, { model, models, type Types } from "mongoose";
-import { Schema } from "zod";
+import mongoose, { model, models, type Types, Schema } from "mongoose";
 
 interface IAccount {
   name: string;
